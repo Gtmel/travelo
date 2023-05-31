@@ -106,7 +106,7 @@ dependencies:
   sqflite: 2.2.6
   stream_transform: 2.1.0
   styled_divider: 1.0.4
-  table_calendar: 3.0.8
+  table_calendar: 3.0.9
   timeago: 3.2.2
   universal_io: 2.2.0
   url_launcher: 6.1.10
