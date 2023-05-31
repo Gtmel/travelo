@@ -23,7 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localization: 0.1.9
+  flutter_localizations:
+    sdk: flutter
   algolia: 1.1.1
   auto_size_text: 3.0.0
   cached_network_image: 3.2.1
@@ -77,7 +78,7 @@ dependencies:
   image_picker_for_web: 2.1.10
   image_picker_ios: 0.8.6+1
   image_picker_platform_interface: 2.6.2
-  intl: 0.17.0
+  intl: 0.18.1
   json_path: 0.4.1
   mask_text_input_formatter: 2.4.0
   mime_type: 1.0.0
