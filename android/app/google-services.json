@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "514802975601",
+    "project_id": "camgo-1893e",
+    "storage_bucket": "camgo-1893e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514802975601:android:3215b393cd368f11806cd0",
+        "android_client_info": {
+          "package_name": "com.mycompany.camgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514802975601-i2ec17njf8tnp2dt6eoper5up6cgs5of.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.camgo",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "514802975601-kip554g5h8ukb01mul8djelkhetm4kvl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.camgo",
+            "certificate_hash": "ef38ab7a2948357b0c4a1186df26082036d95173"
+          }
+        },
+        {
+          "client_id": "514802975601-f6mp9i7mgh71045n7cduierq0knus31r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwWxMeNLRW_5YIrgrUKsRYGbz6DkHKEZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514802975601-f6mp9i7mgh71045n7cduierq0knus31r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "514802975601-4jp324s0igi54j5m19kpkcj6iv5h0t8q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.travelopro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514802975601:android:dda0c91cd841bb47806cd0",
+        "android_client_info": {
+          "package_name": "com.mycompany.travelopro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514802975601-nec6eldjdrbi0cdqjpsbmfp5l031rmvk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.travelopro",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "514802975601-f6mp9i7mgh71045n7cduierq0knus31r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwWxMeNLRW_5YIrgrUKsRYGbz6DkHKEZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514802975601-f6mp9i7mgh71045n7cduierq0knus31r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "514802975601-4jp324s0igi54j5m19kpkcj6iv5h0t8q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.travelopro"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
