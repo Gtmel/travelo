@@ -34,7 +34,7 @@ dependencies:
   cloud_functions: 4.0.6
   cloud_functions_platform_interface: 5.1.25
   cloud_functions_web: 4.3.14
-  collection: 1.17.0
+  collection: 1.17.1
   dash_chat: 1.1.16
   equatable: 2.0.3
   file_picker: 5.2.6
