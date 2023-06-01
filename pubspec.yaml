@@ -23,7 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localization: any
+  flutter_localizations:
+    sdk: flutter
   algolia: 1.1.1
   auto_size_text: 3.0.0
   cached_network_image: 3.2.1
@@ -129,6 +130,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+dependency_overrides:
+  intl: 0.18.1
 
 flutter_icons:
   android: true
