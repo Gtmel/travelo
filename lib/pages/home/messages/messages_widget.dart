@@ -145,7 +145,7 @@ class _MessagesWidgetState extends State<MessagesWidget>
                         return FFChatPreview(
                           onTap: () => context.pushNamed(
                             'conversation',
-                            queryParams: {
+                            queryParameters: {
                               'chatUser': serializeParam(
                                 chatInfo.otherUsers.length == 1
                                     ? chatInfo.otherUsersList.first

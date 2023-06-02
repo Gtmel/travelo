@@ -160,7 +160,7 @@ class _DestinationWidgetState extends State<DestinationWidget> {
 
                       context.pushNamed(
                         'DateDepart',
-                        queryParams: {
+                        queryParameters: {
                           'destination': serializeParam(
                             _model.placePickerValue,
                             ParamType.FFPlace,

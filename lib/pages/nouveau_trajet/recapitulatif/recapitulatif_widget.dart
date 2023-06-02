@@ -557,7 +557,7 @@ class _RecapitulatifWidgetState extends State<RecapitulatifWidget> {
                           } else {
                             context.pushNamed(
                               'TrajetRetour',
-                              queryParams: {
+                              queryParameters: {
                                 'depart': serializeParam(
                                   widget.depart,
                                   ParamType.FFPlace,

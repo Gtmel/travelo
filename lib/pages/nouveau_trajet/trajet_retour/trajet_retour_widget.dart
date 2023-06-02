@@ -150,7 +150,7 @@ class _TrajetRetourWidgetState extends State<TrajetRetourWidget> {
                       onTap: () async {
                         context.pushNamed(
                           'DateDepart',
-                          queryParams: {
+                          queryParameters: {
                             'depart': serializeParam(
                               widget.destination,
                               ParamType.FFPlace,

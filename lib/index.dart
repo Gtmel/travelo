@@ -1,9 +1,7 @@
 // Export pages
-export '/pages/authentication/authentification/authentification_widget.dart'
-    show AuthentificationWidget;
 export '/pages/authentication/verification_s_m_s/verification_s_m_s_widget.dart'
     show VerificationSMSWidget;
-export '/pages/parametres/creer_profil/creer_profil_widget.dart'
+export '/pages/authentication/creer_profil/creer_profil_widget.dart'
     show CreerProfilWidget;
 export '/pages/authentication/passe_oublie/passe_oublie_widget.dart'
     show PasseOublieWidget;
@@ -53,5 +51,7 @@ export '/pages/reservation/code_o_t_p/code_o_t_p_widget.dart'
 export '/pages/parametres/transactions/transactions_widget.dart'
     show TransactionsWidget;
 export '/pages/parametres/support/support_widget.dart' show SupportWidget;
-export '/pages/authentication/authentification_copy/authentification_copy_widget.dart'
-    show AuthentificationCopyWidget;
+export '/pages/authentication/authentification/authentification_widget.dart'
+    show AuthentificationWidget;
+export '/pages/parametres/modifier_profil/modifier_profil_widget.dart'
+    show ModifierProfilWidget;

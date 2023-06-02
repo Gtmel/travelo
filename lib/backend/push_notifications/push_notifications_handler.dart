@@ -57,7 +57,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
         final parameterData = await parametersBuilder(initialParameterData);
         context.pushNamed(
           initialPageName,
-          params: parameterData.params,
+          pathParameters: parameterData.pathParameters,
           extra: parameterData.extra,
         );
       }
@@ -94,7 +94,7 @@ class ParameterData {
   final Map<String, String?> requiredParams;
   final Map<String, dynamic> allParams;
 
-  Map<String, String> get params => Map.fromEntries(
+  Map<String, String> get pathParameters => Map.fromEntries(
         requiredParams.entries
             .where((e) => e.value != null)
             .map((e) => MapEntry(e.key, e.value!)),
@@ -109,18 +109,12 @@ class ParameterData {
 
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
-  'Authentification': ParameterData.none(),
   'VerificationSMS': (data) async => ParameterData(
         allParams: {
           'phoneNumber': getParameter<String>(data, 'phoneNumber'),
         },
       ),
-  'CreerProfil': (data) async => ParameterData(
-        allParams: {
-          'isFirst': getParameter<bool>(data, 'isFirst'),
-          'phoneNumber': getParameter<String>(data, 'phoneNumber'),
-        },
-      ),
+  'CreerProfil': ParameterData.none(),
   'PasseOublie': ParameterData.none(),
   'Rechercher': ParameterData.none(),
   'AjouterTrajet': ParameterData.none(),
@@ -244,7 +238,8 @@ final parametersBuilderMap =
       ),
   'Transactions': ParameterData.none(),
   'Support': ParameterData.none(),
-  'AuthentificationCopy': ParameterData.none(),
+  'Authentification': ParameterData.none(),
+  'ModifierProfil': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

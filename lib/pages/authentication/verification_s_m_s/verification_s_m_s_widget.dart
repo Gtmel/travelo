@@ -162,16 +162,6 @@ class _VerificationSMSWidgetState extends State<VerificationSMSWidget>
                   context.goNamedAuth(
                     'CreerProfil',
                     context.mounted,
-                    queryParams: {
-                      'isFirst': serializeParam(
-                        true,
-                        ParamType.bool,
-                      ),
-                      'phoneNumber': serializeParam(
-                        widget.phoneNumber,
-                        ParamType.String,
-                      ),
-                    }.withoutNulls,
                     ignoreRedirect: true,
                   );
                 },

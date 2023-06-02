@@ -285,7 +285,7 @@ class _ReservationWidgetState extends State<ReservationWidget> {
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'conversation',
-                                                              queryParams: {
+                                                              queryParameters: {
                                                                 'chatUser':
                                                                     serializeParam(
                                                                   reserveUsersRecord,
@@ -611,7 +611,7 @@ class _ReservationWidgetState extends State<ReservationWidget> {
                             onPressed: () async {
                               context.pushNamed(
                                 'paiement',
-                                queryParams: {
+                                queryParameters: {
                                   'voyage': serializeParam(
                                     widget.voyage,
                                     ParamType.Document,

@@ -126,7 +126,7 @@ class _RechercherWidgetState extends State<RechercherWidget> {
                                   onTap: () async {
                                     context.pushNamed(
                                       'resultatRecherche',
-                                      queryParams: {
+                                      queryParameters: {
                                         'departVille': serializeParam(
                                           listViewRechercheRecord.depart,
                                           ParamType.String,
@@ -461,7 +461,7 @@ class _RechercherWidgetState extends State<RechercherWidget> {
 
                                   context.pushNamed(
                                     'resultatRecherche',
-                                    queryParams: {
+                                    queryParameters: {
                                       'departVille': serializeParam(
                                         _model.departPickerValue.city,
                                         ParamType.String,

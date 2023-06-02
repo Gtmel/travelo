@@ -11,7 +11,6 @@ import '/backend/schema/structs/index.dart';
 import '../../auth/base_auth_user_provider.dart';
 import '../../backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
-
 import '../../index.dart';
 import '../../main.dart';
 import '../lat_lng.dart';
@@ -24,6 +23,11 @@ export 'serialization_util.dart';
 const kTransitionInfoKey = '__transition_info__';
 
 class AppStateNotifier extends ChangeNotifier {
+  AppStateNotifier._();
+
+  static AppStateNotifier? _instance;
+  static AppStateNotifier get instance => _instance ??= AppStateNotifier._();
+
   BaseAuthUser? initialUser;
   BaseAuthUser? user;
   bool showSplashImage = true;
@@ -72,22 +76,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, _) => appStateNotifier.loggedIn
-          ? NavBarPage()
-          : AuthentificationCopyWidget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? NavBarPage() : AuthentificationWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
               ? NavBarPage()
-              : AuthentificationCopyWidget(),
+              : AuthentificationWidget(),
           routes: [
-            FFRoute(
-              name: 'Authentification',
-              path: 'authentification',
-              builder: (context, params) => AuthentificationWidget(),
-            ),
             FFRoute(
               name: 'VerificationSMS',
               path: 'verificationSMS',
@@ -98,10 +96,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'CreerProfil',
               path: 'creerProfil',
-              builder: (context, params) => CreerProfilWidget(
-                isFirst: params.getParam('isFirst', ParamType.bool),
-                phoneNumber: params.getParam('phoneNumber', ParamType.String),
-              ),
+              builder: (context, params) => CreerProfilWidget(),
             ),
             FFRoute(
               name: 'PasseOublie',
@@ -350,14 +345,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SupportWidget(),
             ),
             FFRoute(
-              name: 'AuthentificationCopy',
-              path: 'authentificationCopy',
-              builder: (context, params) => AuthentificationCopyWidget(),
+              name: 'Authentification',
+              path: 'authentification',
+              builder: (context, params) => AuthentificationWidget(),
+            ),
+            FFRoute(
+              name: 'ModifierProfil',
+              path: 'modifierProfil',
+              builder: (context, params) => ModifierProfilWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
-      urlPathStrategy: UrlPathStrategy.path,
     );
 
 extension NavParamExtensions on Map<String, String?> {
@@ -372,8 +371,8 @@ extension NavigationExtensions on BuildContext {
   void goNamedAuth(
     String name,
     bool mounted, {
-    Map<String, String> params = const <String, String>{},
-    Map<String, String> queryParams = const <String, String>{},
+    Map<String, String> pathParameters = const <String, String>{},
+    Map<String, String> queryParameters = const <String, String>{},
     Object? extra,
     bool ignoreRedirect = false,
   }) =>
@@ -381,16 +380,16 @@ extension NavigationExtensions on BuildContext {
           ? null
           : goNamed(
               name,
-              params: params,
-              queryParams: queryParams,
+              pathParameters: pathParameters,
+              queryParameters: queryParameters,
               extra: extra,
             );
 
   void pushNamedAuth(
     String name,
     bool mounted, {
-    Map<String, String> params = const <String, String>{},
-    Map<String, String> queryParams = const <String, String>{},
+    Map<String, String> pathParameters = const <String, String>{},
+    Map<String, String> queryParameters = const <String, String>{},
     Object? extra,
     bool ignoreRedirect = false,
   }) =>
@@ -398,25 +397,24 @@ extension NavigationExtensions on BuildContext {
           ? null
           : pushNamed(
               name,
-              params: params,
-              queryParams: queryParams,
+              pathParameters: pathParameters,
+              queryParameters: queryParameters,
               extra: extra,
             );
 
   void safePop() {
     // If there is only one route on the stack, navigate to the initial
     // page instead of popping.
-    if (GoRouter.of(this).routerDelegate.matches.length <= 1) {
-      go('/');
-    } else {
+    if (canPop()) {
       pop();
+    } else {
+      go('/');
     }
   }
 }
 
 extension GoRouterExtensions on GoRouter {
-  AppStateNotifier get appState =>
-      (routerDelegate.refreshListenable as AppStateNotifier);
+  AppStateNotifier get appState => AppStateNotifier.instance;
   void prepareAuthEvent([bool ignoreRedirect = false]) =>
       appState.hasRedirect() && !ignoreRedirect
           ? null
@@ -425,16 +423,15 @@ extension GoRouterExtensions on GoRouter {
       !ignoreRedirect && appState.hasRedirect();
   void clearRedirectLocation() => appState.clearRedirectLocation();
   void setRedirectLocationIfUnset(String location) =>
-      (routerDelegate.refreshListenable as AppStateNotifier)
-          .updateNotifyOnAuthChange(false);
+      appState.updateNotifyOnAuthChange(false);
 }
 
 extension _GoRouterStateExtensions on GoRouterState {
   Map<String, dynamic> get extraMap =>
       extra != null ? extra as Map<String, dynamic> : {};
   Map<String, dynamic> get allParams => <String, dynamic>{}
-    ..addAll(params)
-    ..addAll(queryParams)
+    ..addAll(pathParameters)
+    ..addAll(queryParameters)
     ..addAll(extraMap);
   TransitionInfo get transitionInfo => extraMap.containsKey(kTransitionInfoKey)
       ? extraMap[kTransitionInfoKey] as TransitionInfo
@@ -515,7 +512,7 @@ class FFRoute {
   GoRoute toRoute(AppStateNotifier appStateNotifier) => GoRoute(
         name: name,
         path: path,
-        redirect: (state) {
+        redirect: (context, state) {
           if (appStateNotifier.shouldRedirect) {
             final redirectLocation = appStateNotifier.getRedirectLocation();
             appStateNotifier.clearRedirectLocation();
@@ -524,7 +521,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/authentificationCopy';
+            return '/authentification';
           }
           return null;
         },
