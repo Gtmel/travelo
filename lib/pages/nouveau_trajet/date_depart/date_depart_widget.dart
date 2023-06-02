@@ -137,7 +137,7 @@ class _DateDepartWidgetState extends State<DateDepartWidget> {
                         getCurrentTimestamp) {
                       context.pushNamed(
                         'HeureDepart',
-                        queryParams: {
+                        queryParameters: {
                           'dateDepart': serializeParam(
                             _model.calendarSelectedDay?.start,
                             ParamType.DateTime,

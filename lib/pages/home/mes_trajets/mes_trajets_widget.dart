@@ -175,7 +175,7 @@ class _MesTrajetsWidgetState extends State<MesTrajetsWidget> {
                               onTap: () async {
                                 context.pushNamed(
                                   'trajetDetails',
-                                  queryParams: {
+                                  queryParameters: {
                                     'voyage': serializeParam(
                                       listViewVoyageRecord.reference,
                                       ParamType.DocumentReference,
@@ -248,7 +248,7 @@ class _MesTrajetsWidgetState extends State<MesTrajetsWidget> {
                             onTap: () async {
                               context.pushNamed(
                                 'trajetDetails',
-                                queryParams: {
+                                queryParameters: {
                                   'voyage': serializeParam(
                                     listViewReservationRecord.parentReference,
                                     ParamType.DocumentReference,

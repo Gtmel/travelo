@@ -158,15 +158,7 @@ class _ParametresWidgetState extends State<ParametresWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed(
-                            'CreerProfil',
-                            queryParams: {
-                              'isFirst': serializeParam(
-                                false,
-                                ParamType.bool,
-                              ),
-                            }.withoutNulls,
-                          );
+                          context.pushNamed('ModifierProfil');
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -614,8 +606,7 @@ class _ParametresWidgetState extends State<ParametresWidget> {
                         GoRouter.of(context).clearRedirectLocation();
                       }
 
-                      context.goNamedAuth(
-                          'AuthentificationCopy', context.mounted);
+                      context.goNamedAuth('Authentification', context.mounted);
                     },
                     child: Container(
                       width: double.infinity,

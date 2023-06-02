@@ -156,7 +156,7 @@ class _AjouterTrajetWidgetState extends State<AjouterTrajetWidget> {
 
                       context.pushNamed(
                         'Destination',
-                        queryParams: {
+                        queryParameters: {
                           'depart': serializeParam(
                             _model.placePickerValue,
                             ParamType.FFPlace,

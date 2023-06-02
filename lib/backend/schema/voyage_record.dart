@@ -1,8 +1,5 @@
 import 'dart:async';
 
-import 'package:from_css_color/from_css_color.dart';
-import '/backend/algolia/algolia_manager.dart';
-
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -111,80 +108,6 @@ class VoyageRecord extends FirestoreRecord {
     DocumentReference reference,
   ) =>
       VoyageRecord._(reference, mapFromFirestore(data));
-
-  static VoyageRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
-      VoyageRecord.getDocumentFromData(
-        {
-          'description': snapshot.data['description'],
-          'created_at': safeGet(
-            () => DateTime.fromMillisecondsSinceEpoch(
-                snapshot.data['created_at']),
-          ),
-          'modified_at': safeGet(
-            () => DateTime.fromMillisecondsSinceEpoch(
-                snapshot.data['modified_at']),
-          ),
-          'places_dispo': snapshot.data['places_dispo']?.round(),
-          'prix': snapshot.data['prix']?.round(),
-          'dateDepart': safeGet(
-            () => DateTime.fromMillisecondsSinceEpoch(
-                snapshot.data['dateDepart']),
-          ),
-          'chauffeur': safeGet(
-            () => toRef(snapshot.data['chauffeur']),
-          ),
-          'passagers': safeGet(
-            () => snapshot.data['passagers'].map((s) => toRef(s)).toList(),
-          ),
-          'depart': createLieuStruct(
-            position: safeGet(
-              () => LatLng(
-                (snapshot.data['depart'] ?? {})['_geoloc']['lat'],
-                (snapshot.data['depart'] ?? {})['_geoloc']['lng'],
-              ),
-            ),
-            nom: (snapshot.data['depart'] ?? {})['nom'],
-            ville: (snapshot.data['depart'] ?? {})['ville'],
-            adresse: (snapshot.data['depart'] ?? {})['adresse'],
-            create: true,
-            clearUnsetFields: false,
-          ).toMap(),
-          'destination': createLieuStruct(
-            position: safeGet(
-              () => LatLng(
-                (snapshot.data['destination'] ?? {})['_geoloc']['lat'],
-                (snapshot.data['destination'] ?? {})['_geoloc']['lng'],
-              ),
-            ),
-            nom: (snapshot.data['destination'] ?? {})['nom'],
-            ville: (snapshot.data['destination'] ?? {})['ville'],
-            adresse: (snapshot.data['destination'] ?? {})['adresse'],
-            create: true,
-            clearUnsetFields: false,
-          ).toMap(),
-          'duree': snapshot.data['duree']?.round(),
-          'paid': snapshot.data['paid'],
-        },
-        VoyageRecord.collection.doc(snapshot.objectID),
-      );
-
-  static Future<List<VoyageRecord>> search({
-    String? term,
-    FutureOr<LatLng>? location,
-    int? maxResults,
-    double? searchRadiusMeters,
-    bool useCache = false,
-  }) =>
-      FFAlgoliaManager.instance
-          .algoliaQuery(
-            index: 'voyage',
-            term: term,
-            maxResults: maxResults,
-            location: location,
-            searchRadiusMeters: searchRadiusMeters,
-            useCache: useCache,
-          )
-          .then((r) => r.map(fromAlgolia).toList());
 
   @override
   String toString() =>

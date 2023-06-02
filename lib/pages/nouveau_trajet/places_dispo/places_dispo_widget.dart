@@ -175,7 +175,7 @@ class _PlacesDispoWidgetState extends State<PlacesDispoWidget> {
                   onTap: () async {
                     context.pushNamed(
                       'Tarifs',
-                      queryParams: {
+                      queryParameters: {
                         'placesDispo': serializeParam(
                           _model.countControllerValue,
                           ParamType.int,

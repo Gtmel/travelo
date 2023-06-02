@@ -297,7 +297,7 @@ class _CodeOTPWidgetState extends State<CodeOTPWidget> {
 
                               context.pushNamed(
                                 'ReservationOK',
-                                queryParams: {
+                                queryParameters: {
                                   'voyage': serializeParam(
                                     widget.voyage,
                                     ParamType.Document,

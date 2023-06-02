@@ -679,7 +679,7 @@ class _TrajetDetailsWidgetState extends State<TrajetDetailsWidget> {
                                     onTap: () async {
                                       context.pushNamed(
                                         'conversation',
-                                        queryParams: {
+                                        queryParameters: {
                                           'chatUser': serializeParam(
                                             columnUsersRecord,
                                             ParamType.Document,
@@ -731,7 +731,7 @@ class _TrajetDetailsWidgetState extends State<TrajetDetailsWidget> {
                                   onPressed: () async {
                                     context.pushNamed(
                                       'Reservation',
-                                      queryParams: {
+                                      queryParameters: {
                                         'voyage': serializeParam(
                                           columnVoyageRecord,
                                           ParamType.Document,

@@ -144,7 +144,7 @@ class _ResultatRechercheWidgetState extends State<ResultatRechercheWidget> {
                               onTap: () async {
                                 context.pushNamed(
                                   'trajetDetails',
-                                  queryParams: {
+                                  queryParameters: {
                                     'voyage': serializeParam(
                                       listViewVoyageRecord.reference,
                                       ParamType.DocumentReference,

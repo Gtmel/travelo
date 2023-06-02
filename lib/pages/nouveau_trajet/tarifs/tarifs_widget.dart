@@ -210,7 +210,7 @@ class _TarifsWidgetState extends State<TarifsWidget> {
 
                       context.pushNamed(
                         'Recapitulatif',
-                        queryParams: {
+                        queryParameters: {
                           'depart': serializeParam(
                             widget.depart,
                             ParamType.FFPlace,

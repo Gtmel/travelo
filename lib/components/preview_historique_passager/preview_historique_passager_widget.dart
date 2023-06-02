@@ -270,7 +270,7 @@ class _PreviewHistoriquePassagerWidgetState
                         onTap: () async {
                           context.pushNamed(
                             'ajouterAvis',
-                            queryParams: {
+                            queryParameters: {
                               'destinataire': serializeParam(
                                 widget.conducteurID,
                                 ParamType.DocumentReference,

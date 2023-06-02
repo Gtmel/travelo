@@ -286,7 +286,7 @@ class _PaiementWidgetState extends State<PaiementWidget> {
                                 '\"REQUIRE_OTP\"') {
                               context.pushNamed(
                                 'codeOTP',
-                                queryParams: {
+                                queryParameters: {
                                   'voyage': serializeParam(
                                     widget.voyage,
                                     ParamType.Document,
@@ -384,7 +384,7 @@ class _PaiementWidgetState extends State<PaiementWidget> {
                         if (containerTransactionsRecord!.status == 'SUCCESS') {
                           context.pushNamed(
                             'ReservationOK',
-                            queryParams: {
+                            queryParameters: {
                               'voyage': serializeParam(
                                 widget.voyage,
                                 ParamType.Document,
@@ -423,7 +423,7 @@ class _PaiementWidgetState extends State<PaiementWidget> {
 
                             context.pushNamed(
                               'ReservationOK',
-                              queryParams: {
+                              queryParameters: {
                                 'voyage': serializeParam(
                                   widget.voyage,
                                   ParamType.Document,

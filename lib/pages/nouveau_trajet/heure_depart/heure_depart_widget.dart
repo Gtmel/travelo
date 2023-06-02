@@ -203,7 +203,7 @@ class _HeureDepartWidgetState extends State<HeureDepartWidget> {
 
                       context.pushNamed(
                         'PlacesDispo',
-                        queryParams: {
+                        queryParameters: {
                           'heureDepart': serializeParam(
                             _model.datePicked,
                             ParamType.DateTime,
